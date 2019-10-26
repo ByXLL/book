@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en" class="app">
+<head>  
+  <meta charset="utf-8" />
+  <title>在线小说</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <link rel="stylesheet" href="js/jPlayer/jplayer.flat.css" type="text/css" />
+  <link rel="stylesheet" href="css/bootstrap.css" type="text/css" />
+  <link rel="stylesheet" href="css/animate.css" type="text/css" />
+  <link rel="stylesheet" href="css/font-awesome.min.css" type="text/css" />
+  <link rel="stylesheet" href="css/simple-line-icons.css" type="text/css" />
+  <link rel="stylesheet" href="css/font.css" type="text/css" />
+    <style type="text/css">
+        .jumbotron.text p{
+            font-family: 微软雅黑;
+            font-size: 16px;
+            font-weight: 400;
+            line-height: 30px;
+        }
+        #text.text h3{
+            text-align: center;
+        }
+        .container #text.jumbotron{
+            padding-top: 15px;
+        }
+    </style>
+</head>
+<body style="overflow:hidden">
+  <section class="vbox">
+      <div class="container container-b">
+          <div class="row">
+              <div class="col-sm-3 col-md-3 col-lg-3" style="margin-top: 15px;">
+                  <div class="book-value" style="">
+                      <table class="table table-hover">
+                          <thead>
+                              <tr>
+                                  <th>章节列表</th>
+                              </tr>
+                          </thead>
+                          <tbody class="book-tittle-td">
+
+                          </tbody>
+                      </table>
+                  </div>
+              </div>
+              <div class="col-sm-9 col-md-9 col-lg-9">
+                      <div class="row clearfix book-value" style="">
+                          <div class="col-md-12 column scroll-top-r" style="margin-top: 15px;">
+                              <div class="jumbotron text" id="text" style="font-family: 微软雅黑; font-size: 16px; color: #000;">
+
+                              </div>
+                          </div>
+                      </div>
+              </div>
+          </div>
+      </div>
+  </section>
+  <script src="js/jquery.min.js"></script>
+  <!-- Bootstrap -->
+  <script src="js/bootstrap.js"></script>
+  <script src="js/jquery.slimscroll.js"></script>
+  <script>
+      $(function(){
+          $('.book-value').slimScroll({
+              height: '750px',
+              color: '#000', //滚动条颜色
+              position: 'right', //组件位置：left/right
+              distance: '0px', //组件与侧边之间的距离
+              start: 'top', //默认滚动位置：top/bottom
+              opacity: .4, //滚动条透明度
+              alwaysVisible: false, //是否 始终显示组件
+              disableFadeOut: true, //是否 鼠标经过可滚动区域时显示组件，离开时隐藏组件
+              railVisible: true, //是否 显示轨道
+              railColor: '#333', //轨道颜色
+              railOpacity: .2, //轨道透明度
+              railDraggable: true, //是否 滚动条可拖动
+              wrapperClass: 'slimScrollDiv', //外包div类名
+              allowPageScroll: true, //是否 使用滚轮到达顶端/底端时，滚动窗口
+              wheelStep: 20, //滚轮滚动量
+              touchScrollStep: 200, //滚动量当用户使用手势
+              borderRadius: '7px', //滚动条圆角
+              railBorderRadius: '7px' //轨道圆角
+          });
+      });
+
+      $.ajax({
+          type: 'get',
+          url: '/api/getChaptersmList/'+getQueryString("id"),
+          dataType: 'json',
+          jsonp: "jsoncallback",
+          success: function(data) {
+              console.log(data);
+              var oTittle = $('.book-tittle-td');
+              var oText = $('#text');
+              var htmlTittle = '';
+              for (var i = 0; i < data.length; i++) {
+                  htmlTittle += '<tr></tr><td><a class="le-li-node" href="javascript:seeInfo(' + data[i].id + ');">' + data[i].title + '</a></td></tr>';
+                 // html += '<h3 name="title'+i+'">'+data[i].title+'</h3>'+data[i].content;
+              }
+              oTittle.html(htmlTittle);
+              seeInfo(data[0].id);
+          }
+      });
+      function getQueryString(name) {
+          var reg = new RegExp('(^|&)' + name + '=([^&]*)(&|$)', 'i');
+          var r = window.location.search.substr(1).match(reg);
+          if (r != null) {
+              return unescape(r[2]);
+          }
+          return null;
+      }
+      //根据id请求页面内容加载
+      function seeInfo(id) {
+
+          $(".scroll-top-r").scrollTop(0);
+
+          $.get("/api/seeinfo/"+id,{},function (res) {
+              $('#text').html(res.content);
+          });
+
+      }
+
+
+  </script>
+</body>
+</html>

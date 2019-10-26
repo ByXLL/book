@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en" class="app">
+<head>
+    <meta charset="utf-8"/>
+    <title>在线小说</title>
+    <meta name="description"
+          content="app, web app, responsive, admin dashboard, admin, flat, flat ui, ui kit, off screen nav"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+    <link rel="stylesheet" href="js/jPlayer/jplayer.flat.css" type="text/css"/>
+    <link rel="stylesheet" href="css/bootstrap.css" type="text/css"/>
+    <link rel="stylesheet" href="css/animate.css" type="text/css"/>
+    <link rel="stylesheet" href="css/font-awesome.min.css" type="text/css"/>
+    <link rel="stylesheet" href="css/simple-line-icons.css" type="text/css"/>
+    <link rel="stylesheet" href="css/font.css" type="text/css"/>
+    <link rel="stylesheet" href="css/app.css" type="text/css"/>
+    <style>
+        html {
+            background-color: #E3E3E3;
+            font-size: 14px;
+            color: #000;
+            font-family: '微软雅黑'
+        }
+
+        a, a:hover {
+            text-decoration: none;
+        }
+
+        pre {
+            font-family: '微软雅黑'
+        }
+
+        .box {
+            padding: 20px;
+            background-color: #fff;
+            margin: 50px 100px;
+            border-radius: 5px;
+        }
+
+        .box a {
+            padding-right: 15px;
+        }
+
+        #about_hide {
+            display: none
+        }
+
+        .layer_text {
+            background-color: #fff;
+            padding: 20px;
+        }
+
+        .layer_text p {
+            margin-bottom: 10px;
+            text-indent: 2em;
+            line-height: 23px;
+        }
+
+        .button {
+            display: inline-block;
+            *display: inline;
+            *zoom: 1;
+            line-height: 30px;
+            padding: 0 20px;
+            background-color: #56B4DC;
+            color: #fff;
+            font-size: 14px;
+            border-radius: 3px;
+            cursor: pointer;
+            font-weight: normal;
+        }
+
+        .photos-demo img {
+            width: 200px;
+        }
+    </style>
+</head>
+<body>
+<section class="vbox">
+    <header class="bg-white header header-md navbar navbar-fixed-top-xs">
+        <div class="navbar-header aside bg-info">
+            <a class="btn btn-link visible-xs" data-toggle="class:nav-off-screen,open" data-target="#nav,html">
+                <i class="icon-list"></i>
+            </a>
+            <a href="index.html" class="navbar-brand text-lt">
+                <i class="icon-book-open"></i>
+                <img src="images/logo.png" alt="." class="hide">
+                <span class="hidden-nav-xs m-l-sm">在线小说</span>
+            </a>
+            <a class="btn btn-link visible-xs" data-toggle="dropdown" data-target=".user">
+                <i class="icon-settings"></i>
+            </a>
+        </div>
+        <ul class="nav navbar-nav hidden-xs">
+            <li>
+                <a href="#nav,.navbar-header" data-toggle="class:nav-xs,nav-xs" class="text-muted">
+                    <i class="fa fa-indent text"></i>
+                    <i class="fa fa-dedent text-active"></i>
+                </a>
+            </li>
+        </ul>
+        <div class="navbar-form navbar-left input-s-lg m-t m-l-n-xs hidden-xs" role="search">
+            <div class="form-group" style="width: 350px;">
+                <div class="input-group">
+            <span class="input-group-btn" style="left: 350px;">
+              <button class="btn btn-sm bg-white btn-icon rounded add-f-btn"><i class="fa fa-search"></i></button>
+            </span>
+                    <input type="text" class="form-control input-sm no-border rounded add-f-url"
+                           placeholder="复制链接添加书本."  style="border: 1px solid #ccc;">
+                </div>
+            </div>
+
+        </div>
+    </header>
+    <section id="">
+        <section class="hbox stretch">
+            <!-- .aside -->
+            <aside class="bg-black dk  aside hidden-print" id="nav">
+                <section class="vbox">
+                    <section class="w-f-md scrollable">
+                        <div class="slim-scroll" data-height="auto" data-disable-fade-out="true" data-distance="0"
+                             data-size="10px" data-railOpacity="0.2">
+
+
+                            <!-- nav -->
+                            <nav class="nav-primary hidden-xs">
+                                <ul class="nav bg clearfix">
+
+                                    <li>
+                                        <a href="index.html">
+                                            <i class="icon-list icon  text-info-dker"></i>
+                                            <span class="font-bold">列表</span>
+                                        </a>
+                                    </li>
+
+                                    <li class="m-b hidden-nav-xs"></li>
+                                </ul>
+                            </nav>
+                            <!-- / nav -->
+                        </div>
+                    </section>
+                </section>
+            </aside>
+            <!-- /.aside -->
+            <section id="content">
+                <section class="hbox stretch">
+                    <section>
+                        <section class="vbox">
+                            <section class="scrollable padder-lg w-f-md" id="bjax-target">
+                                <a href="#" class="pull-right text-muted m-t-lg" data-toggle="class:fa-spin"><i
+                                        class="icon-refresh i-lg  inline" id="refresh"></i></a>
+                                <h2 class="font-thin m-b text-lg">书籍列表<span class="musicbar animate inline m-l-sm"
+                                                                            style="width:20px;height:20px">
+                                    <span class="bar1 a1 bg-primary lter"></span>
+                                    <span class="bar2 a2 bg-info lt"></span>
+                                    <span class="bar3 a3 bg-success"></span>
+                                    <span class="bar4 a4 bg-warning dk"></span>
+                                    <span class="bar5 a5 bg-danger dker"></span>
+                                  </span>
+                                </h2>
+                                <div class="row row-sm" id="oBooks">
+                                    <div class="col-xs-6 col-sm-4 col-md-3 col-lg-4">
+                                        <div class="item">
+                                            <div class="pos-rlt">
+                                                <div class="item-overlay opacity r r-2x bg-black">
+                                                    <div class="text-info padder m-t-sm text-sm">
+                                                        <i class="fa fa-star"></i>
+                                                        <i class="fa fa-star"></i>
+                                                        <i class="fa fa-star"></i>
+                                                        <i class="fa fa-star"></i>
+                                                        <i class="fa fa-star-o text-muted"></i>
+                                                    </div>
+                                                    <div class="center text-center m-t-n">
+                                                        <a href="#"><i class="icon-book-open i-5x"></i></a>
+                                                    </div>
+                                                    <div class="bottom padder m-b-sm">
+                                                        <a href="#" class="pull-right active" data-toggle="class">
+                                                            <i class="text text-md"></i>
+                                                            <i class="fa fa-heart text-active text-danger"></i>
+                                                        </a>
+                                                        <a href="#">
+                                                            <i class="fa text text-lg" id="zz">作者：</i>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                                <div class="top">
+                                                    <span class="pull-right m-t-n-xs m-r-sm text-white">
+                                                      <i class="fa fa-bookmark i-lg"></i>
+                                                    </span>
+                                                </div>
+                                                <a href="#"><img src="images/p1.jpg" alt="" class="r r-2x img-full"></a>
+                                            </div>
+                                            <div class="padder-v">
+                                                <a href="#" class="text-ellipsis text-lg text-center">author</a>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
+                                        <div class="item">
+                                            <div class="pos-rlt">
+                                                <div class="item-overlay opacity r r-2x bg-black">
+                                                    <div class="text-info padder m-t-sm text-sm">
+                                                        <i class="fa fa-star"></i>
+                                                        <i class="fa fa-star"></i>
+                                                        <i class="fa fa-star"></i>
+                                                        <i class="fa fa-star-o text-muted"></i>
+                                                        <i class="fa fa-star-o text-muted"></i>
+                                                    </div>
+
+                                                    <div class="center text-center m-t-n">
+                                                        <a href="#"><i class="icon-book-open i-2x"></i></a>
+                                                    </div>
+                                                    <div class="bottom padder m-b-sm">
+                                                        <a href="#" class="pull-right active" data-toggle="class">
+                                                            <i class="text text-lg"></i>
+                                                            <i class="fa fa-heart text-active text-danger"></i>
+                                                        </a>
+                                                        <a href="#">
+                                                            <i class="fa text text-sm">作者：18154542</i>
+                                                        </a>
+                                                    </div>
+
+                                                </div>
+                                                <a href="#"><img src="images/p2.jpg" alt="" class="r r-2x img-full"></a>
+                                            </div>
+                                            <div class="padder-v">
+                                                <a href="#" class="text-ellipsis text-ms text-center">《剑来》</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="clearfix visible-xs"></div>
+                                </div>
+                            </section>
+                        </section>
+                    </section>
+                </section>
+                <a href="#" class="hide nav-off-screen-block" data-toggle="class:nav-off-screen,open"
+                   data-target="#nav,html"></a>
+            </section>
+        </section>
+    </section>
+</section>
+<script src="js/jquery.min.js"></script>
+<!-- Bootstrap -->
+<script src="js/bootstrap.js"></script>
+<!-- App -->
+<script src="js/app.js"></script>
+<script src="js/app.plugin.js"></script>
+<script src="js/layer.js"></script>
+<script src="js/slimscroll/jquery.slimscroll.min.js"></script>
+<script src="js/booksadd.js" charset="utf-8"></script>
+<script>
+    $(".add-f-btn").click(function () {
+        var pattern = /^((https|http|www)?:\/\/)[^\s]+/;
+        var str = $('.form-control.input-sm').val();
+        if(pattern.test(str)){
+            $.get("/api/addFiction?url="+$(".add-f-url").val(),{},function (res) {
+                alert(res);
+                location.reload();
+            });
+            return false;
+        }else {
+            alert("请输入正确的url地址");
+        }
+
+    });
+   function layerAlert(bookid){
+        //ready是为了layer所需配件（css、扩展模块）加载完毕
+        layer.ready(function () {
+            layer.open({
+                type: 2,
+                title: '敬请阅读',
+                maxmin: true,
+                area: ['1350px', '720px'],
+                content: '/read?id='+bookid
+            });
+        });
+    }
+</script>
+</body>
+</html>

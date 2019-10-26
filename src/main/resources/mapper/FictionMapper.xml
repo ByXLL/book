@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD Mapper 3.0" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.hjl.book.mapper.FictionMapper">
+    <!-- 入库 -->
+    <insert id="Add" parameterType="com.hjl.book.entity.Fiction">
+        insert into fiction(`name`,`bookId`,`imgSrc`,`author`,`type`,`state`,`lastestupdate`,`lastestChapter`,`intro`)values(#{name},#{bookId},#{imgSrc},#{author},#{type},#{state},#{lastestupdate},#{lastestChapter},#{intro})
+    </insert>
+
+    <!-- 查内容 -->
+    <select id="getFictionList" resultType="com.hjl.book.entity.Fiction">
+        select * from Fiction
+    </select>
+
+</mapper>
